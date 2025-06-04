@@ -1,5 +1,8 @@
 ﻿using PRA_B4_FOTOKIOSK.magie;
 using PRA_B4_FOTOKIOSK.models;
+using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Windows;
 
 namespace PRA_B4_FOTOKIOSK
@@ -45,8 +48,30 @@ namespace PRA_B4_FOTOKIOSK
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            // Haal de bon op via ShopManager
             string bon = ShopManager.GetShopReceipt();
-            MessageBox.Show("Bon opgeslagen:\n" + bon);
+
+            // Controleer of er iets is om op te slaan
+            if (string.IsNullOrWhiteSpace(bon))
+            {
+                MessageBox.Show("Er is geen bon om op te slaan.");
+                return;
+            }
+
+            // Bepaal het pad waar het bestand wordt opgeslagen: in de Documentenmap
+            string bestandsPad = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "bon.txt");
+
+            try
+            {
+                // Schrijf de bon naar het tekstbestand
+                File.WriteAllText(bestandsPad, bon);
+                MessageBox.Show($"Bon succesvol opgeslagen in:\n{bestandsPad}");
+            }
+            catch (IOException ex)
+            {
+                // Toon een foutmelding als het opslaan mislukt
+                MessageBox.Show("Fout bij opslaan van de bon:\n" + ex.Message);
+            }
         }
 
         private void btnZoeken_Click(object sender, RoutedEventArgs e)
@@ -59,6 +84,9 @@ namespace PRA_B4_FOTOKIOSK
             }
 
             lbSearchInfo.Content = $"Zoeken naar: {zoekterm}";
+
+            // Eventueel hier productzoekfunctionaliteit implementeren
+            // Bijvoorbeeld producten filteren op naam of categorie
         }
     }
 }

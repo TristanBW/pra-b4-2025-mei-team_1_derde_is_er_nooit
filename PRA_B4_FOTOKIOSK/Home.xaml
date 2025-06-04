@@ -40,12 +40,16 @@
                     <Label x:Name="lbPrices" Content="" HorizontalAlignment="Left" Margin="1041,174,0,0" VerticalAlignment="Top" Height="536" Width="695" Grid.Column="3"/>
                     <Label x:Name="lbReceipt" Content="" HorizontalAlignment="Left" Margin="76,442,0,0" VerticalAlignment="Top" Height="392" Width="325" Grid.Column="3"/>
 
-                    <!-- Hier voegen we het ontbrekende label toe -->
+                    <!-- Totaalbedrag label -->
                     <Label x:Name="lblTotalAmount" Content="Totaalbedrag: €0,00"
-                           HorizontalAlignment="Left" Margin="76,850,0,0" VerticalAlignment="Top" 
-                           Width="325" Height="30" Grid.Column="3" FontWeight="Bold" FontSize="16"/>
+                           HorizontalAlignment="Left" Margin="508,518,0,0" VerticalAlignment="Top" 
+                           Width="324" Height="30" Grid.Column="3" FontWeight="Bold" FontSize="16"/>
 
-                    <Button x:Name="btnSave" Content="Bon Opslaan" HorizontalAlignment="Left" Margin="0,998,0,0" VerticalAlignment="Top" Width="83" Height="28" Click="btnSave_Click" Grid.Column="1" Grid.ColumnSpan="3"/>
+                    <!-- Bon Opslaan knop -->
+                    <Button x:Name="btnSave" Content="Bon Opslaan"
+                            HorizontalAlignment="Left" Margin="523,598,0,0"
+                            VerticalAlignment="Top" Width="147" Height="40"
+                            Click="btnSave_Click" Grid.Column="3" RenderTransformOrigin="3.022,-6.063"/>
                 </Grid>
             </TabItem>
 
